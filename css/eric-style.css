@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, menu, nav {
+	background: none repeat scroll 0 0 transparent;
+	border: 0 none;
+	font-size: 100%;
+	margin: 0;
+	outline: 0 none;
+	padding: 0;
+	vertical-align: baseline;
+}
+html {
+	background: url(/background-image-flipped.png) no-repeat fixed center center;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+body {
+	line-height: 1.5;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+a img {
+	border: 0 none;
+}
+a:hover, a:active {
+	outline: medium none;
+	color: #868585;
+	text-decoration: none;
+	transition: all 0.2s eas-in-out 0s;
+}
+:focus {
+	outline: 0 none;
+}
+body {
+ background: none repeat scroll 0 0 #FFFFFF color: #333333;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 100%;
+	text-rendering: optimizelegibility;
+}
+ul li {
+	list-style-type: none;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+}
+blockquote, q {
+	quotes: none;
+}
+#container {
+	background: none repeat scroll 0 0 #FFFFFF;
+	margin: 0 0;
+	width: 940px;
+	height: 100%;
+	overflow: auto;
+	padding: 3em 40px;
+	position: relative;
+}
+#container-home {
+	background: transparent repeat scroll 0 0 #FFFFFF;
+	margin: 0 0;
+	width: 960px;
+	overflow: auto;
+	padding: 3em 40px;
+	position: relative;
+}
+section {
+	display: block;
+}
+#side-menu {
+	float: left;
+	width: 220px;
+	padding: 9px;
+	margin-right: 15px;
+	overflow: visible;
+	background: none repeat scroll 0 0 #FFFFFF;
+}
+#logo-name {
+	margin-bottom: -.1em;
+	font-family: 'Signika', sans-serif;
+	font-weight: 600;
+	font-size: 60px;
+	color: #C92027;
+	width: 220px;
+	overflow: visible;
+	white-space: nowrap;
+}
+#logo-subtitle {
+	margin-bottom: 40px;
+	line-height: 50%;
+	font-family: 'Signika', sans-serif;
+	font-weight: 600;
+	font-size: 17px;
+	color: #353535;
+	overflow: hidden;
+}
+#logo-subtitle li {
+	line-height: 1;
+}
+.nav {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 25px;
+	text-align: right;
+	color: #353535;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	min-width: 161 px;
+	float: right;
+}
+.nav .active {
+	color: #C92027;
+}
+.nav ul {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#content {
+	float: left;
+	padding: 9px;
+	width: 620px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	color: #353535;
+	background: none repeat scroll 0 0 #FFFFFF;
+	margin-top: 115px;
+}
+#content-title {
+	font-family: 'Signika', sans-serif;
+	font-size: 26px;
+	margin-bottom: 20px;
+}
+#content-text {
+}
+#content a {
+	color: #C92027;
+}
+#content a:hover {
+	color: #C92027;
+}
+.clearfix:after, .container:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix, .container {
+	display: inline-block;
+}
+* html .clearfix, * html .container {
+	height: 1%;
+}
+.clearfix, .container {
+	display: block;
+}
+.clear {
+	clear: both;
+}
