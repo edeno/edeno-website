@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpectraVis</title>
+  <style type="text/css">
+    code {
+      white-space: pre;
+    }
+  </style>
+  <link rel="stylesheet" href="description.css" type="text/css" />
+  <!-- Bootstrap -->
+  <link href="css/main.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Title Panel -->
+    <div class="row" id="TitlePanel">
+      <h3>SpectraVis</h3>
+    </div>
+    <div id="export-link-help" class="row btn-group btn-group-xs" role="group">
+      <button type="button" class="btn btn-default" id="link" title="Link to this view of the visualization">
+        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+        Link
+      </button>
+      <div id="permalink">
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <label>Copy the text below or bookmark this <a class="bookmark" href="">link</a> to get back to this view of SpectraVis.</label>
+        <textarea class="copy-link" spellcheck="false"></textarea>
+      </div>
+      <button type="button" class="btn btn-default" id="export" title="Export a screenshot of the visualization">
+        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+        Export
+      </button>
+      <button type="button" class="btn btn-default" id="help-button" aria-label="Help" title="Display Help">
+        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        Help
+      </button>
+    </div>
+    <div class="row">
+      <!-- Brain Panel -->
+      <div class="col-md-9 text-center" id="NetworkPanel"></div>
+      <!-- Sidebar -->
+      <div class="col-md-3" id="sidebar">
+        <div id="SubjectPanel" class="row bottom-buffer">
+          <label class="col-md-6">Subject</label>
+          <div class="dropdown col-md-6" id="SubjectDropdown">
+            <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="subjectButton" data-toggle="dropdown">
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="subjectDropdown"></ul>
+          </div>
+        </div>
+        <div id="EdgeStatTypePanel" class="row bottom-buffer">
+          <label class="col-md-6">Edge Statistic</label>
+          <div class="dropdown col-md-6" id="EdgeStatTypeDropdown">
+            <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="EdgeStatTypeButton" data-toggle="dropdown">
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="EdgeStatTypeDropdown">
+            </ul>
+          </div>
+        </div>
+        <div id="EdgeFilterPanel" class="row bottom-buffer">
+          <label class="col-md-6">Edge Filter</label>
+          <div class="dropdown col-md-6" id="EdgeFilterDropdown">
+            <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="EdgeFilterButton" data-toggle="dropdown">
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="EdgeFilterDropdown">
+              <li role="presentation" id="All"><a role="menuitem" tabindex="-1">All Edges</a></li>
+              <li role="presentation" id="Within"><a role="menuitem" tabindex="-1">Within Area Edges</a></li>
+              <li role="presentation" id="Between"><a role="menuitem" tabindex="-1">Between Area Edges</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="NetworkViewPanel" class="row bottom-buffer">
+          <label for="networkRadio" class="col-md-6">Network View</label>
+          <form class="col-md-6 text-center">
+            <input type="radio" id="anatomicalRadio" value="Anatomical" checked>
+            <label for="networkRadio">Anatomical</label>
+            <input type="radio" id="topologicalRadio" value="Topological">
+            <label for="networkRadio">Topological</label>
+          </form>
+        </div>
+        <div id="TimeSliderPanel" class="row bottom-buffer">
+          <label for="timeSlider" class="col-md-6">Time</label>
+          <form class="col-md-6">
+            <input type="range" id="timeSlider">
+          </form>
+          <output id="timeSlider-value" class="col-md-6 pull-right"></output>
+        </div>
+        <div id="FreqSliderPanel" class="row bottom-buffer">
+          <label for="freqSlider" class="col-md-6">Frequency</label>
+          <form class="col-md-6">
+            <input type="range" id="freqSlider">
+          </form>
+          <output id="freqSlider-value" class="col-md-6 pull-right"></output>
+        </div>
+        <div id="PlayButtonPanel" class="row bottom-buffer">
+          <button class="btn btn-default btn-sm col-md-6" type="button" id="playButton">
+            Play
+          </button>
+          <button class="btn btn-default btn-sm col-md-6" type="button" id="resetButton">
+            Reset
+          </button>
+        </div>
+        <!-- Legend Panel -->
+        <div id="legendKey" class="row">
+          <div class="col-md-12" id="anatomicalLegend"></div>
+          <div class="col-md-12" id="edgeStatLegend"></div>
+          <div class="col-md-12" id="spectraLegend"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Heatmap Panel -->
+    <div class="row" id="heatmapRow">
+      <div class="col-md-4" id="SpectraCh1Panel"></div>
+      <div class="col-md-4" id="EdgeStatPanel"></div>
+      <div class="col-md-4" id="SpectraCh2Panel"></div>
+    </div>
+    <!-- Time Slice Panel -->
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4" id="timeSlice"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3 id="about">About</h3>
+      </div>
+      <div class="col-md-6 description">
+        <h4 id="data">Data</h4>
+        <p>Here we show functional connectivity networks during an out-loud reading task. Electrocorticography (ECOG) signals were recorded while subjects read the words of a famous speech or nursery rhyme out loud as they scrolled across a computer screen.</p>
+        <p>Trials (
+          <em>Speech</em>) were defined as the time period 500 ms before until 500 ms after the onset of speech, and they were compared to baseline data when the subject was not speaking (
+          <em>Silence</em>).</p>
+        <p>Note that the subjects were not speaking before time 0 (speech onset) during the trials, although this time period likely includes neural activity related to reading and speech preparation. The trials were analyzed using a 200 ms sliding window.</p>
+        <h4 id="types-of-networks">Types of Networks</h4>
+        <p>Five network types are available:</p>
+        <ul>
+          <li>
+            <p>
+              <strong>Coherence difference</strong>.
+              <span class="math inline">\(Coh(Speech) - Coh(Silence)\)</span>
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Weighted coherence</strong>.
+              <span class="math inline">\(\hat{z}_{coh} = \frac{atanh(Coh(Speech)) - \frac{1}{2LP-2} - atanh(Coh(Silence) - \frac{1}{2KP-2}}{\sqrt{var_{jk}(\hat{z}_{coh})}}\)</span>
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Two-sided binary coherence</strong>. Two-sided test for
+              <span class="math inline">\(H_0: \hat{z}_{coh}=0\)</span>, corrected for multiple comparisons using a false discovery rate criterion of 5%</p>
+          </li>
+          <li>
+            <p>
+              <strong>Weighted correlation</strong>.
+              <span class="math inline">\(\hat{z}_{corr} = \frac{atanh(Corr(Speech)) - atanh(Corr(Silence))}{\sqrt{(var_{jk}(\hat{z}_{corr}))}}\)</span>
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Two-sided binary correlation</strong>. Two-sided test for
+              <span class="math inline">\(H_0: \hat{z}_{corr}=0\)</span>, corrected for multiple comparisons using a false discovery rate criterion of 5%</p>
+          </li>
+        </ul>
+        <p>where
+          <span class="math inline">\(Coh(.)\)</span> is coherence between two edges at a particular time and frequency,
+          <span class="math inline">\(Corr(.)\)</span> is correlation between two edges at a particular time,
+          <span class="math inline">\(atanh(.)\)</span> is the Fisher transform,
+          <span class="math inline">\(var_{jk}(.)\)</span> is the variance estimated using a two-sample jackknife-procedure,
+          <span class="math inline">\(L\)</span> is the number of speech trials,
+          <span class="math inline">\(K\)</span> is the number of silence intervals, and
+          <span class="math inline">\(P\)</span> is the number of tapers used in the multitaper estimate of the coherence.</p>
+        <p>Under the null hypothesis of no coherence (or correlation) between the electrodes,
+          <span class="math inline">\(\hat{z}_{coh}\)</span> (
+          <span class="math inline">\(\hat{z}_{corr}\)</span>) will be approximately distributed as a standard normal.</p>
+        <p>All frequency-domain statistics have a frequency resolution of +/- 5 Hz.</p>
+      </div>
+      <div class="col-md-6 description">
+        <h4 id="visualization">Visualization</h4>
+        <p>The selected network type is shown for a particular time and frequency, which can be chosen using the sliders on the right or by hovering over the spectrograms/coherograms/correlograms below.</p>
+        <p>Below the network view are shown several detail plots for a selected edge (a different edge can be selected by clicking the edge or by clicking on two nodes). In the middle, the edge statistic is shown for all time points (and for all frequencies
+          if applicable). On the sides are shown the spectrograms on each incident node, plotted as the log of the ratio of the power during speech relative to silence.</p>
+        <h4 id="credits">Credits</h4>
+        <p>The data were provided by <a href="http://www.schalklab.org">Dr. Gerwin Schalk</a> and Dr. Peter Brunner at the Wadsworth Institute in Albany, New York.</p>
+        <p>Network analysis was performed by <a href="http://www.emilystephen.com/">Emily Stephen</a> in the <a href="http://www.bu.edu/speechlab/">Speech Lab at Boston University</a>. Details of the analysis may be found in:</p>
+          <blockquote>
+            <p>Stephen, Emily Patricia. 2015. “Characterizing Dynamically Evolving Functional Networks in Humans with Application to Speech.” Order No. 3733680, Boston University. <a href="http://search.proquest.com/docview/1731940762" class="uri">http://search.proquest.com/docview/1731940762</a>.</p>
+          </blockquote>
+        <p>The visualization was created by <a href="http://www.ericdeno.com/">Eric Denovellis</a> under the advisement of <a href="http://cns.bu.edu/Profiles/Bullock.html">Daniel H. Bullock</a> at Boston University.</p>
+        <p>Code for this visualization is free to use under the GPL-2.0 license. It is available on <a href="https://github.com/edeno/SpectraVis">Github</a>.</p>
+      </div>
+    </div>
+  </div> <!-- end container div-->
+  <div id="overlay">
+    <div id="helpToolTip">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4>How to Use SpectraVis</h4>
+      <div id="toolTip-content">
+        <p>
+          <strong>WARNING</strong>: This visualization may take a long time to load due to some large files. Please be patient on the first load.</p>
+        <p>
+          <strong>Click</strong> on any two nodes or the edge between them to load the spectra and coherences/correlations between those two nodes. </p>
+        <p>
+          <strong>Mouse over</strong> the spectra or cohereograms/correlograms to see the network at that time and/or frequency </p>
+        <p>
+          <strong>Click on</strong> the spectra or cohereograms/correlograms to freeze the network at a particular time and frequency value</p>
+        <br>
+        <p>
+          <strong>Edge Filter</strong> allows you to look at only edges between areas, edges within areas, or all edges</p>
+        <p>
+          <strong>Network View</strong> allows you to toggle between viewing the nodes in their anatomical location or in a layout designed to give you a sense of the structure of the network (topological) </p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="js/vendor.min.js"></script>
+  <script src="js/main.min.js"></script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script>
+    // Extract parameters from the browser
+    var extractedParams = [];
+    var query = window.location.search.substring(1);
+    if (query !== "") {
+      var vars = query.split("&");
+      vars.forEach(function(v) {
+        var p = v.split("=");
+        var isUndefined = (typeof(p[1]) === 'undefined');
+        var isEmpty = (p[1] === "");
+        if (isUndefined || isEmpty) {
+          extractedParams[p[0]] = null;
+        } else {
+          extractedParams[p[0]] = decodeURI(p[1]);
+        }
+      });
+    }
+    // Initialize visualization
+    spectraVis.init(extractedParams);
+  </script>
+</body>
+</html>
