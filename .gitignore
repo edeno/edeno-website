@@ -1,2 +1,4 @@
 
 *.json
+/research/SpectraVis/
+wp-*
