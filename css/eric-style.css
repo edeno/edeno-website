@@ -45,10 +45,13 @@ blockquote, q {
 	padding: 3em 40px;
 	position: relative;
 }
-#home.container {
-	background: url(/background-image-flipped.png) no-repeat fixed center center;
-	position: fixed;
-	width: 100%;
+body#home {
+	background-image: url(/background-image-flipped.png);
+	background-color: #FFFFFF;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
 }
 section {
 	display: block;
