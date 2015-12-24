@@ -1,22 +1,4 @@
 @charset "utf-8";
-/* CSS Document */
-
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, menu, nav {
-	background: none repeat scroll 0 0 transparent;
-	border: 0 none;
-	font-size: 100%;
-	margin: 0;
-	outline: 0 none;
-	padding: 0;
-	vertical-align: baseline;
-}
-html {
-	background: url(/background-image-flipped.png) no-repeat fixed center center;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
 body {
 	line-height: 1.5;
 }
@@ -55,8 +37,7 @@ ul li {
 blockquote, q {
 	quotes: none;
 }
-#container {
-	background: none repeat scroll 0 0 #FFFFFF;
+.container {
 	margin: 0 0;
 	width: 940px;
 	height: 100%;
@@ -64,8 +45,12 @@ blockquote, q {
 	padding: 3em 40px;
 	position: relative;
 }
-#container-home {
-	background: transparent repeat scroll 0 0 #FFFFFF;
+#home.container {
+	background: url(/background-image-flipped.png) no-repeat fixed center center;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 	margin: 0 0;
 	width: 960px;
 	overflow: auto;
@@ -75,7 +60,7 @@ blockquote, q {
 section {
 	display: block;
 }
-#side-menu {
+.side-menu {
 	float: left;
 	width: 220px;
 	padding: 9px;
@@ -83,7 +68,7 @@ section {
 	overflow: visible;
 	background: none repeat scroll 0 0 #FFFFFF;
 }
-#logo-name {
+.logo-name {
 	margin-bottom: -.1em;
 	font-family: 'Signika', sans-serif;
 	font-weight: 600;
@@ -93,7 +78,7 @@ section {
 	overflow: visible;
 	white-space: nowrap;
 }
-#logo-subtitle {
+.logo-subtitle {
 	margin-bottom: 40px;
 	line-height: 50%;
 	font-family: 'Signika', sans-serif;
@@ -102,7 +87,7 @@ section {
 	color: #353535;
 	overflow: hidden;
 }
-#logo-subtitle li {
+.logo-subtitle li {
 	line-height: 1;
 }
 .nav {
@@ -124,7 +109,7 @@ section {
 	padding: 0;
 	width: 100%;
 }
-#content {
+.content {
 	float: left;
 	padding: 9px;
 	width: 620px;
@@ -139,12 +124,12 @@ section {
 	font-size: 26px;
 	margin-bottom: 20px;
 }
-#content-text {
+.content-text {
 }
-#content a {
+.content a {
 	color: #C92027;
 }
-#content a:hover {
+.content a:hover {
 	color: #C92027;
 }
 .clearfix:after, .container:after {
