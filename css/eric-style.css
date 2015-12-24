@@ -47,15 +47,8 @@ blockquote, q {
 }
 #home.container {
 	background: url(/background-image-flipped.png) no-repeat fixed center center;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	margin: 0 0;
-	width: 960px;
-	overflow: auto;
-	padding: 3em 40px;
-	position: relative;
+	position: fixed;
+	width: 100%;
 }
 section {
 	display: block;
@@ -131,23 +124,4 @@ section {
 }
 .content a:hover {
 	color: #C92027;
-}
-.clearfix:after, .container:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
-.clearfix, .container {
-	display: inline-block;
-}
-* html .clearfix, * html .container {
-	height: 1%;
-}
-.clearfix, .container {
-	display: block;
-}
-.clear {
-	clear: both;
 }
