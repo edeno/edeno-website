@@ -46,26 +46,52 @@
       </div>
     </div>
     <div class="content">
-      <div class="content-title"> Matlab Tutorial</div>
-      <p> As part of <a href="http://celest.bu.edu/">CELEST</a>, I designed a Matlab tutorial for summer undergraduates with little or no programming experience. The tutorial consists of three files: <a href="/code/CELEST_matlab.m">CELEST_matlab.m</a>,
-        <a
-        href="/code/myFile.mat">myFile.mat</a>, and <a href="/code/myFirstFunction.m">myFirstFunction.m</a> (You can also download all three as a .rar file <a href="/code/Matlab Tutorial.rar">here </a>). You will need all three files to complete the tutorial. </p>
+      Code for most of my projects can be found on my <a href="https://github.com/edeno">Github page</a>. Here are some select projects I've worked on:
       <br />
-      <p>To get started, open CELEST_matlab.m in the Matlab editor and read the comments carefully (Green text preceded by a percent sign % are comments). Copy and paste the lines that are not commented (black text) into the Matlab command window. </p>
-      <br />
-      <div class="content-title"> Computational Model of Visuomotor Reach Adaptation</div>
-      <p> As a teaching assistant for the class<a href="http://cns-web.bu.edu/courses/courses.html#540"> CN540 - Neural and Computational Models of Adaptive Movement Planning and Control</a>, I created a <a href="/code/CN540 Final Project.pdf">final project assignment</a>        and a <a href="/code/cn540model.zip">computational model</a> inspired by Bullock et al. (1993) and Grosse-Wentrup and Vidal (2007). </p>
-      <br />
-      <p>The project challenges the student to understand how the brain learns to perform visually-guided reaches by integrating both motor and visual sensory feedback. In order to complete the assignment, the student must show understanding of the model
-        by adding additional features to the model and by critiquing the added features.</p>
-      <br />
-      <p>
-        <strong> References</strong>: Bullock, D., Grossberg, S., & Guenther, F. H. (1993). <a href="http://www.cns.bu.edu/Profiles/Grossberg/BulGroGue1993JOCN.pdf">A self-organizing neural model of motor equivalent reaching and tool use by a multijoint arm</a>.
-        <em>Journal of Cognitive Neuroscience</em>, 5(4), 408-435. </p>
-      <br />
-      <p> Grosse-Wentrup, M., & Contreras-Vidal, J. L. (2007). <a href="http://www.is.tuebingen.mpg.de/fileadmin/user_upload/files/publications/GrosseWentrupVidal2007_BioCyb_[0].pdf">The role of the striatum in adaptation learning: a computational model</a>.
-        <em>
-        Biological Cybernetics</em>, 96(4), 377-388. </p>
+      <div class="content-title">SpectraVis</div>
+      <p><code>SpectraVis</code> is a javascript-based interactive web-based neuroscience tool for analyzing task-related functional networks over time and frequency. It allows users to:
+        <ul>
+          <li>examine how network dynamics change over time and frequency</li>
+          <li>compare local (statistical dependencies between a single pair of nodes) and global (statistical dependencies between all nodes) dynamics.</li>
+          <li>compare different types of functional connectivity measures (correlation, coherence).</li>
+          <li>compare between different subjects.</li>
+          <li>examine only within- or between-brain area connections</li>
+          <li>switch between multiple network views for better understanding of the network structure</li>
+        </ul>
+        <a href="http://ericdeno.com/research/SpectraVis/">Demo.</a> <a href="https://github.com/NeurophysVis/SpectraVis">Repo.</a></p>
+      <img src="SpectraVis-Demo.gif">
+      <div class="content-title">RasterVis</div>
+      <p>RasterVis is interactive javascript-based neuroscience visualization tool for quickly viewing, grouping and summarizing spike rasters for many neurons. <a href="https://github.com/NeurophysVis/RasterVis">Repo.</a></p>
+      <img src="RasterVis-ChangeTime.gif" width="720px" height="450px"></img>
+      <img src="RasterVis-KDE-Smoothing.gif" width="720px" height="450px"></img>
+      <div class="content-title">Spectral Connectivity</div>
+      <p><code>spectral_connectivity</code> is a python software package that computes frequency-domain brain connectivity measures such as coherence, spectral granger causality, and the phase lag index using the multitaper Fourier transform. Although there
+        are other python packages that do this (see <a href="https://github.com/nipy/nitime">nitime</a> and <a href="https://github.com/mne-tools/mne-python">MNE-Python</a>), spectral has several differences:
+        <ul>
+          <li>it is designed to handle multiple time series at once</li>
+          <li>it caches frequently computed quantities such as the cross-spectral matrix and minimum-phase-decomposition, so that connectivity measures that use the same processing steps can be more quickly computed.</li>
+          <li>it decouples the time-frequency transform and the connectivity measures so that if you already have a preferred way of computing Fourier coefficients (i.e. from a wavelet transform), you can use that instead.</li>
+          <li>it implements the non-parametric version of the spectral granger causality in Python.</li>
+          <li>it implements the canonical coherence, which can efficiently summarize brain-area level coherences from multielectrode recordings.</li>
+          <li>easier user interface for the multitaper fourier transform</li>
+        </ul>
+        <a href="https://github.com/Eden-Kramer-Lab/time_rescale">Repo.</a></p>
+      <div class="content-title">Replay Classification</div>
+      <img src="replay_example.png"></img>
+
+      <p><code>replay_classification</code> is a python package for categorizing hippocampal replay events using multiunit spiking activity. Multiunit spiking activity can be more informative than sorted spikes, because there is no need to distinguish between
+        neurons. This has several advantages:</p>
+      <ol>
+        <li>We can take advantage of partial information from neurons that are not well separated in terms of electrophysiological signal.</li>
+        <li>Saves time, because no spike-sorting step is necessary.</li>
+      </ol> <a href="https://github.com/Eden-Kramer-Lab/time_rescale">Repo.</a>
+      </p>
+      <div class="content-title">Time Rescale</div>
+      <img src="time_rescaling_ks_autocorrelation_adjusted.png"></img>
+      <p>The <code>time_rescale</code> python package allows you to check how well a point process regression model fits neural spiking data by using the time rescaling theorem. The theorem states that point processes can be transformed according to its
+        conditional intensity (instantaneous firing rate) into a unit rate poisson process. So if your model accurately captures the spiking data, you should be able to use the predicted conditional intensity from your model to rescale the spiking data
+        into a unit rate poisson process. <a href="https://github.com/Eden-Kramer-Lab/time_rescale">Repo.</a></p>
+
     </div>
   </div>
 </body>
